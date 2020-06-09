@@ -27,13 +27,6 @@ html {
   /* 2 */
 }
 
-footer {
-  background-color:#e5e5e5;
-  text-align:center;
-  padding:10px;
-  margin-top:7px;
-}
-
 /* Sections
    ========================================================================== */
 /**
@@ -411,7 +404,7 @@ h2,
 h3,
 h4,
 h5 {
-  margin: 1.5rem 0;
+  margin: 1.5rem 0.7rem;
   font-weight: 600;
   font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
   line-height: 1.2;

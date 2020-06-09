@@ -8,13 +8,13 @@
       </div>
 
       <vs-navbar-item index="0">
-        <a href="index.html">Index</a>
+        <a><router-link :to="{ name: 'home' }">Home</router-link></a>
       </vs-navbar-item>
       <vs-navbar-item index="1">
-        <a href="contact.html">Contact</a>
+        <a><router-link :to="{ name: 'contact' }">Contact</router-link></a>
       </vs-navbar-item>
       <vs-navbar-item index="2">
-        <a href="aide.html">Aide</a>
+        <a><router-link :to="{ name: 'aide' }">Aide</router-link></a>
       </vs-navbar-item>
     </vs-navbar>
   </div>

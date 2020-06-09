@@ -9,7 +9,9 @@
       :description-items="descriptionItems"
       description-title="Registries"
       description-connector="of"
-      description-body="Pages">
+      description-body="Pages"
+      v-model="selected"
+      @selected="handleSelected">
 
       <template slot="header">
         <h3>
@@ -35,7 +37,7 @@
       </template>
       
       <template slot-scope="{data}">
-        <vs-tr :key="indextr" v-for="(tr, indextr) in data" >
+        <vs-tr :data="tr" :key="indextr" v-for="(tr, indextr) in data" >
           <vs-td :data="data[indextr].libelle">
             {{data[indextr].libelle}}
           </vs-td>
@@ -53,7 +55,7 @@
           </vs-td>
 
           <vs-td :data="data[indextr].recordid">
-            <a v-bind:href="data[indextr].lien_page_projet" v-text="data[indextr].lien_page_projet"></a>
+            <a v-bind:href="data[indextr].lien_page_projet" v-text="data[indextr].lien_page_projet" />
           </vs-td>
         </vs-tr>
       </template>
@@ -68,8 +70,9 @@ export default {
     },
   data:()=>({
     descriptionItems: [10,20,30],
-        ascending: false,
-        sortColumn: ''
+    ascending: false,
+    sortColumn: '',
+    selected:[]
   }),
     methods: {  
       sortTable(col) {
@@ -89,8 +92,20 @@ export default {
         }
         return 0;
       })
+      },
+      handleSelected(tr) {
+        console.log(tr).li
       }
       
     },
 }
 </script>
+
+
+<style scoped>
+h3 {
+  font-size: initial;
+  margin-top: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+</style>
