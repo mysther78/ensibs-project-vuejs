@@ -11,7 +11,8 @@
       description-connector="of"
       description-body="Pages"
       v-model="selected"
-      @selected="handleSelected">
+      @selected="handleSelected"
+      @dblSelection="doubleSelection">
 
       <template slot="header">
         <h3>
@@ -94,9 +95,14 @@ export default {
       })
       },
       handleSelected(tr) {
-        console.log(tr).li
+        document.getElementById("iframe").setAttribute("src","https://data.rennesmetropole.fr/explore/embed/dataset/localisation-et-etat-des-projets-du-budget-participatif/map/?disjunctive.quartier&scrollWheelZoom=true&q=" + tr.libelle);
+        location.hash = "#iframe"; 
+      },
+      doubleSelection(tr) {
+        tr
+        document.getElementById("iframe").setAttribute("src","https://data.rennesmetropole.fr/explore/embed/dataset/localisation-et-etat-des-projets-du-budget-participatif/map/?disjunctive.quartier&scrollWheelZoom=true");
+        location.hash = "#iframe"; 
       }
-      
     },
 }
 </script>

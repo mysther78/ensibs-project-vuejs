@@ -1,7 +1,7 @@
 <template>
     <div>
       <VuesaxTable v-bind:records="records"/>
-      <p align="center"><iframe src="https://data.rennesmetropole.fr/explore/embed/dataset/localisation-et-etat-des-projets-du-budget-participatif/map/?disjunctive.quartier&location=13,48.10863,-1.66057&basemap=0a029a&static=false&datasetcard=false&scrollWheelZoom=true" width="800" height="400" frameborder="0"></iframe></p>
+      <p align="center"><iframe src="https://data.rennesmetropole.fr/explore/embed/dataset/localisation-et-etat-des-projets-du-budget-participatif/map/?disjunctive.quartier&scrollWheelZoom=true" width="800" height="400" frameborder="0" id="iframe"></iframe></p>
     </div>
 </template>
 
@@ -16,10 +16,7 @@ Vue.use(Vuesax)
 
 export default {
   components: {
-    // RecordTable,
-    // Navbar,
-    VuesaxTable,
-    // Footer
+    VuesaxTable
   },
   data() {
     return {
