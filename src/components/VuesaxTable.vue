@@ -1,7 +1,10 @@
-<template lang="html">
+<!-- VuesaxTable.vue est le tableau où s'affiche tous les records de l'api de Rennes, ces données doivent être passées an parametre du component dans la varable "records" -->
+<!-- VuesaxTable est un component repris de la librairie Vuesax -->
+
+<template>
   <div>
     <vs-table
-      stripe
+      stripe 
       :max-items="descriptionItems[0]"
       pagination
       :data="records"
@@ -66,14 +69,14 @@
 
 <script>
 export default {
-    props: {
+    props: { // Définition des paramètres du component
       records: Array,
     },
-  data:()=>({
-    descriptionItems: [10,20,30],
-    ascending: false,
-    sortColumn: '',
-    selected:[]
+  data:()=>({ // Définition des données du component, une mis à jour de ses données provoque un update automatique du DOM
+    descriptionItems: [10,20,30], // Nombre d'item par page
+    ascending: false, // Trie croissant
+    sortColumn: '', // Nom de la colonne triée
+    selected:[] // Ligne selectionnée
   }),
     methods: {  
       sortTable(col) {
@@ -98,8 +101,7 @@ export default {
         document.getElementById("iframe").setAttribute("src","https://data.rennesmetropole.fr/explore/embed/dataset/localisation-et-etat-des-projets-du-budget-participatif/map/?disjunctive.quartier&scrollWheelZoom=true&q=" + tr.libelle);
         location.hash = "#iframe"; 
       },
-      doubleSelection(tr) {
-        tr
+      doubleSelection() {
         document.getElementById("iframe").setAttribute("src","https://data.rennesmetropole.fr/explore/embed/dataset/localisation-et-etat-des-projets-du-budget-participatif/map/?disjunctive.quartier&scrollWheelZoom=true");
         location.hash = "#iframe"; 
       }
@@ -108,7 +110,7 @@ export default {
 </script>
 
 
-<style scoped>
+<style scoped> /* Style utilisable sur le component, pratique car le component devient "portable" avec son CSS */
 h3 {
   font-size: initial;
   margin-top: 0.8rem;
