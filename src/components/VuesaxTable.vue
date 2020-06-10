@@ -15,7 +15,7 @@
       description-body="Pages"
       v-model="selected"
       @selected="handleSelected"
-      @dblSelection="doubleSelection">
+      @dblSelection="doubleSelection"> <!-- Différentes options disponible avec le component Vuesax récupéré sur internet, toutes les options sont dans  -->
 
       <template slot="header">
         <h3>
@@ -42,6 +42,9 @@
       
       <template slot-scope="{data}">
         <vs-tr :data="tr" :key="indextr" v-for="(tr, indextr) in data" >
+          <!-- :data="tr" represente la donnée envoyer lors d'une séléction -->
+          <!-- v-for="(tr, indextr) in data" represente un parcours sur le tableau data -->
+          <!-- Dans la boucle il est possible d'utiliser data[indextr].CHAMPS afin de récupérer le contenu de chaque ligne et l'afficher -->
           <vs-td :data="data[indextr].libelle">
             {{data[indextr].libelle}}
           </vs-td>
@@ -60,6 +63,8 @@
 
           <vs-td :data="data[indextr].recordid">
             <a v-bind:href="data[indextr].lien_page_projet" v-text="data[indextr].lien_page_projet" />
+            <!-- v-bind permet d'ajouter un attribut à l'élément <a> -->
+            <!-- v-text permet d'ajouter un innerText à l'élément <a> -->
           </vs-td>
         </vs-tr>
       </template>
@@ -79,7 +84,8 @@ export default {
     selected:[] // Ligne selectionnée
   }),
     methods: {  
-      sortTable(col) {
+      sortTable(col) { //Fontion de trie des lignes lors d'un appuis sur le nom d'une colonne
+                       // Trie par ordre croissant ou decroissant en rappuiyant dessus
         if (this.sortColumn === col) {
           this.ascending = !this.ascending;
         } else {
@@ -88,7 +94,7 @@ export default {
         }
 
         var ascending = this.ascending;
-        this.records.sort(function(a, b) {
+        this.records.sort(function(a, b) { // La fonction de trie se fait ci en recréant la fonction sort() en 
         if (a.fields[col] > b.fields[col]) {
           return ascending ? 1 : -1;
         } else if (a.fields[col] < b.fields[col]) {
@@ -96,14 +102,14 @@ export default {
         }
         return 0;
       })
-      },
+      }, // Fonction appelée lors d'un click simple sur une ligne du tableau, recupère le libelle de la ligne et l'ajoute à la carte interactive
       handleSelected(tr) {
         document.getElementById("iframe").setAttribute("src","https://data.rennesmetropole.fr/explore/embed/dataset/localisation-et-etat-des-projets-du-budget-participatif/map/?disjunctive.quartier&scrollWheelZoom=true&q=" + tr.libelle);
-        location.hash = "#iframe"; 
+        location.hash = "#iframe"; // Scroll automatique vers la carte
       },
-      doubleSelection() {
+      doubleSelection() { // Fonction appelée lors d'un double click sur une ligne du tableau réinitialise la carte interactive
         document.getElementById("iframe").setAttribute("src","https://data.rennesmetropole.fr/explore/embed/dataset/localisation-et-etat-des-projets-du-budget-participatif/map/?disjunctive.quartier&scrollWheelZoom=true");
-        location.hash = "#iframe"; 
+        location.hash = "#iframe"; // Scroll automatique vers la carte
       }
     },
 }
